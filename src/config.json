@@ -17,6 +17,7 @@
       "queryLocation": "idols.rq",
       "name": "My idols",
       "description": "A simple Test query",
+            "icon": "test", 
       "id": "123",
       "comunicaContext": {
         "sources": ["http://localhost:8001/example/idols"],
@@ -27,6 +28,7 @@
       "queryLocation": "images_test.rq",
       "name": "A Test For Images",
       "description": "A small test to test the functionality of the Web app concerning images",
+            "icon": "images",
       "id": "789",
       "comunicaContext": {
         "sources": ["http://localhost:8080/example/cute-cats"]
@@ -36,6 +38,7 @@
       "queryLocation": "ask_picasso.rq",
       "name": "Is there an artist influenced by Picasso?",
       "description": "Whether or not there is an artist who is influenced by Picasso",
+            "icon": "picasso",
       "id": "987",
       "comunicaContext": {
         "sources": ["https://fragments.dbpedia.org/2016-04/en"],
@@ -50,6 +53,7 @@
       "queryLocation": "construct_picasso.rq",
       "name": "A graph of artists influenced by Picasso",
       "description": "A test for quad queries",
+            "icon": "picasso",
       "id": "9876",
       "comunicaContext": {
         "sources": ["http://localhost:8080/example/artists"],
@@ -60,6 +64,7 @@
       "queryLocation": "books.rq",
       "name": "A list of my favorite books",
       "description": "A short list of some of my favorite books, which I keep secret.",
+            "icon": "books",
       "id": "321",
       "comunicaContext": {
         "sources": ["http://localhost:8080/example/favourite-books"]
@@ -69,6 +74,7 @@
       "queryLocation": "books.rq",
       "name": "My wish list",
       "description": "A list of books I'd love to own",
+            "icon": "books",
       "id": "654",
       "comunicaContext": {
         "sources": ["http://localhost:8080/example/wish-list"]
@@ -79,6 +85,7 @@
       "name": "My favourite musicians",
       "description": "A list of my favourite musicians",
       "id": "6543",
+      "icon": "music",
       "comunicaContext": {
         "sources": [
           "http://localhost:8080/example/favourite-musicians",

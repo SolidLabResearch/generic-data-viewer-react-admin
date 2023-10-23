@@ -3,6 +3,13 @@ describe("Web app", () => {
     cy.visit("/");
   });
 
+  it("Custom icon per query is displayed", () => {
+    cy.visit("/");
+
+    cy.get('[data-testid="BiotechIcon"]').should("exist");
+    cy.get('[data-testid="BrushIcon"]').should("exist");
+  })
+
   it("Fetch status source info on query failed", () => {
     cy.visit("/");
 

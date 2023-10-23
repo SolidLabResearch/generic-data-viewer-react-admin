@@ -59,6 +59,7 @@ The configuration file follows a simple structure.
             "name": "A name for the query",
             "description": "Description of the query",
             "id": "A unique ID for the query",
+            "icon" "The key to the icon for to represent the query, see below. This is optional and a default menu icon will be used when left empty.",
             "comunicaContext": {
                 "sources": "Sources over which the query should be executed",
                 "useProxy": "True or false, whether the query should be executed through the proxy or not. This field is optional and defaults to false.",
@@ -86,6 +87,23 @@ we can fully interpret how we can display and represent the result.
 
 You can specify the type of a variable by extending its name with the type in the query as such: `variableName_variableType`.
 The underscore `_` here is crucial to make a clear distinction between name and type.
+
+### Icon Mapper
+
+In the selection menu the name of the query is proceeded by an icon.
+You configure this icon per query in the [configuration file](#configuration-file).  
+For this to work you need to add the icon to the [IconMapper.js](./src/IconProvider/IconProvider.js) file.
+We advice to use the [Material UI icons](https://material-ui.com/components/material-icons/) as this is what's used internally in `react-admin` and it is also included in the dependencies.
+Nevertheless, you can use any React component you want, just make sure it's a functional component.
+
+The mapper follows the following structure:
+
+```js
+{
+    "iconName": iconComponent,
+    ...
+}
+```
 
 ### Representation Mapper
 

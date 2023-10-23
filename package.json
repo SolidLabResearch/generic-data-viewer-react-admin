@@ -28,6 +28,7 @@
     "@inrupt/vocab-common-rdf": "^1.0.5",
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.4",
+    "@rdfjs/types": "^1.1.0",
     "cypress": "^12.17.4",
     "prop-types": "^15.8.1",
     "rdf-string": "^1.6.3",

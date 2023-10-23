@@ -8,6 +8,7 @@ import {
   handleIncomingRedirect,
 } from "@inrupt/solid-client-authn-browser";
 import ListResultTable from "./components/ListResultTable/ListResultTable";
+import IconProvider from "./IconProvider/IconProvider";
 import authenticationProvider from "./authenticationProvider/authenticationProvider";
 import SolidLoginForm from "./components/LoginPage/LoginPage";
 import {QueryClient} from "react-query";
@@ -68,6 +69,7 @@ function App() {
             key={query.id}
             name={query.id}
             options={{ label: query.name }}
+            icon={IconProvider[query.icon]}
             list={ListResultTable}
           />
         );
