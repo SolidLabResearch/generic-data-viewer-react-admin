@@ -29,7 +29,7 @@ module.exports = {
     'jsdoc/check-access': 1, // Recommended
     'jsdoc/check-alignment': 1, // Recommended
     // 'jsdoc/check-examples': 1,
-    // 'jsdoc/check-indentation': 1,
+    'jsdoc/check-indentation': 1,
     // 'jsdoc/check-line-alignment': 1,
     'jsdoc/check-param-names': 1, // Recommended
     'jsdoc/check-property-names': 1, // Recommended
@@ -42,7 +42,7 @@ module.exports = {
     // 'jsdoc/informative-docs': 1,
     // 'jsdoc/match-description': 1,
     'jsdoc/multiline-blocks': 1, // Recommended
-    // 'jsdoc/no-bad-blocks': 1,
+    'jsdoc/no-bad-blocks': 1,
     // 'jsdoc/no-blank-block-descriptions': 1,
     // 'jsdoc/no-defaults': 1,
     // 'jsdoc/no-missing-syntax': 1,
