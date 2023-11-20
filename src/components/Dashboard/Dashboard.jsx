@@ -1,5 +1,6 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import config from "../../config";
 import {Title} from 'react-admin';
 import PropTypes from 'prop-types';
 import './Dashboard.css';
@@ -16,7 +17,7 @@ function Dashboard(props) {
 
   return (
     <Card>
-      <Title title="Introduction"/>
+      <Title title={config.title}/>
       <CardContent>{text}</CardContent>
     </Card>
   );
