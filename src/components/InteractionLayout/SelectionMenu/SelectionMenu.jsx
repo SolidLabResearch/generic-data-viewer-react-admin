@@ -2,6 +2,7 @@ import { useResourceDefinitions } from "ra-core";
 import { DashboardMenuItem } from "ra-ui-materialui";
 import { Menu } from "react-admin";
 import { ThemeProvider, createTheme } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 import { Component } from "react";
 
 /**
@@ -17,6 +18,7 @@ function SelectionMenu() {
         {Object.keys(resources).map((id) => (
           <Menu.ResourceItem key={id} name={id} />
         ))}
+        <Menu.Item to="/createquery" primaryText="Create new query" leftIcon={<AddIcon />}/>
       </Menu>
     </ThemeProvider>
   );

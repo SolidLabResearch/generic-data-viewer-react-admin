@@ -1,5 +1,5 @@
 import "./App.css";
-import { Admin, Resource } from "react-admin";
+import {Admin, CustomRoutes, Resource} from "react-admin";
 import SparqlDataProvider from "./dataProvider/SparqlDataProvider";
 import config from "./config";
 import { Component, useEffect, useState } from "react";
@@ -13,6 +13,8 @@ import SolidLoginForm from "./components/LoginPage/LoginPage";
 import {QueryClient} from "react-query";
 import Dashboard from "./components/Dashboard/Dashboard";
 import InteractionLayout from "./components/InteractionLayout/InteractionLayout";
+import QueryEditor from "./components/Editor/QueryEditor.jsx";
+import { Route } from "react-router-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -72,6 +74,14 @@ function App() {
           />
         );
       })}
+      <CustomRoutes>
+          <Route key="createQuery" path="/createquery" element={<QueryEditor newQuery={true}/>}/>
+          {config.queries.map((query) => {
+              return (
+                  <Route key={`edit${query.id}`} path={`/${query.id}/edit`} element={<QueryEditor newQuery={false} id={query.id}/>}/>
+              );
+          })}
+      </CustomRoutes>
     </Admin>
   );
 }

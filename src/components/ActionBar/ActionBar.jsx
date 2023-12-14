@@ -18,6 +18,7 @@ import {
 import InfoIcon from "@mui/icons-material/Info";
 import SourceAuthenticationIcon from "./SourceAuthenticationIcon/SourceAuthenticationIcon";
 import SourceFetchStatusIcon from "./SourceFetchStatusIcon/SourceFetchStatusIcon";
+import QueryEditButton from "./QueryEditButton.jsx";
 
 /**
  *
@@ -79,6 +80,7 @@ function ActionBar() {
             </div>
           </div>
           <div className="action-box">
+            <QueryEditButton/>
             <ExportButton disabled={total === 0 || isLoading} />
           </div>
         </TopToolbar>

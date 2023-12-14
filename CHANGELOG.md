@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - "Unknown User" when not logged in (#51).
+- Allow to add custom query + editor (#54).
 
 ### Removed
 - Bulk action checkboxes to delete (#44).
