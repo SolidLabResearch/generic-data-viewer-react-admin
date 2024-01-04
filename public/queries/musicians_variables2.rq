@@ -1,0 +1,8 @@
+PREFIX schema: <http://schema.org/>
+
+SELECT ?name WHERE {
+  ?list schema:name ?listTitle;
+    schema:name ?name;
+    schema:genre $genre;
+    schema:sameAs $sameAsUrl;
+}

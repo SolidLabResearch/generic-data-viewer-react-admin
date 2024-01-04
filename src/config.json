@@ -9,7 +9,7 @@
   "queryFolder": "queries",
   "httpProxy": "http://localhost:8000/",
   "showMilliseconds": false,
-  "defaultIDP": "https://pod.playground.solidlab.be/",
+  "defaultIDP": "http://localhost:8080",
   "footer": "<p><a href='https://idlab.technology/'>IDLab</a> - <a href='https://www.imec.be/nl'>imec</a> - <a href='https://www.ugent.be/'>UGent</a></p>",
   "introductionText": "Please select a query from the menu on the left.",
   "queries": [
@@ -85,6 +85,44 @@
           "httq://this-runs-on-httq.com/"
         ],
         "lenient": true
+      }
+    },
+    {
+      "queryLocation": "musicians_variables.rq",
+      "name": "My favourite musicians (template)",
+      "description": "A list of my favourite musicians (with variables)",
+      "id": "6544",
+      "variables": {
+        "genre": [
+          "\"Romantic\"",
+          "\"Baroque\"",
+          "\"Classical\""
+        ]
+      },
+      "comunicaContext": {
+        "sources": ["http://localhost:8080/example/favourite-musicians"]
+      }
+    },
+    {
+      "queryLocation": "musicians_variables2.rq",
+      "name": "My favourite musicians (template with two variables)",
+      "description": "A list of my favourite musicians (with two variables)",
+      "id": "6545",
+      "variables": {
+        "genre": [
+          "\"Romantic\"",
+          "\"Baroque\"",
+          "\"Classical\""
+        ],
+        "sameAsUrl": [
+          "<https://en.wikipedia.org/wiki/Ludwig_van_Beethoven>",
+          "<https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart>",
+          "<https://en.wikipedia.org/wiki/Johann_Sebastian_Bach>",
+          "<https://en.wikipedia.org/wiki/Franz_Schubert>"
+        ]
+      },
+      "comunicaContext": {
+        "sources": ["http://localhost:8080/example/favourite-musicians"]
       }
     }
   ]

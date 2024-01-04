@@ -7,12 +7,12 @@ import {
   getDefaultSession,
   handleIncomingRedirect,
 } from "@inrupt/solid-client-authn-browser";
-import ListResultTable from "./components/ListResultTable/ListResultTable";
 import authenticationProvider from "./authenticationProvider/authenticationProvider";
 import SolidLoginForm from "./components/LoginPage/LoginPage";
 import {QueryClient} from "react-query";
 import Dashboard from "./components/Dashboard/Dashboard";
 import InteractionLayout from "./components/InteractionLayout/InteractionLayout";
+import TemplatedQueryForm from "./components/ListResultTable/TemplatedQueryForm.jsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -68,7 +68,7 @@ function App() {
             key={query.id}
             name={query.id}
             options={{ label: query.name }}
-            list={ListResultTable}
+            list={TemplatedQueryForm}
           />
         );
       })}
