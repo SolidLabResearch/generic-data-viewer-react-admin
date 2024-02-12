@@ -80,6 +80,16 @@
       }
     },
     {
+      "queryLocation": "books.rq",
+      "name": "My wish list (empty)",
+      "description": "A list of books I'd love to own",
+      "icon": "MenuBookIcon",
+      "id": "4101",
+      "comunicaContext": {
+        "sources": []
+      }
+    },
+    {
       "queryLocation": "musicians.rq",
       "name": "My favourite musicians",
       "description": "A list of my favourite musicians",

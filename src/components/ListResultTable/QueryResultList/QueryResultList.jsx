@@ -12,7 +12,7 @@ import TableHeader from "./TableHeader/TableHeader";
  */
 function QueryResultList(props) {
   const { data } = useListContext(props);
-  const [values, setValues] = useState(undefined);
+  const [values, setValues] = useState([]);
   useEffect(() => {
     if (data && data.length > 0) {
       const setData = reduceDataToObject(data);
@@ -24,7 +24,7 @@ function QueryResultList(props) {
   return (
     <>
       <Title title={config.title} />
-      <ListView title=" " actions={<ActionBar />} {...props}>
+      <ListView title=" " actions={<ActionBar />} empty={<ActionBar />} {...props}>
         {values && (
           <Datagrid header={<TableHeader config={config}/>} bulkActionButtons={false}>
             {Object.keys(values).map((key) => {
