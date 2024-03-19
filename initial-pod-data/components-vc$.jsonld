@@ -1,0 +1,86 @@
+{
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        "https://w3id.org/security/suites/ed25519-2020/v1"
+      ],
+      "type": [
+        "VerifiableCredential"
+      ],
+      "issuer": "http://localhost:8080/example/profile/card#me",
+      "issuanceDate": "2010-01-01T19:23:24Z",
+      "credentialSubject": [
+        {
+          "@id": "http://www/example.com/data/component-c01",
+          "@type": [
+            "http://www/example.com/ont/Component"
+          ],
+          "http://www/example.com/ont/has-component-bom": [
+            {
+              "@id": "http://www/example.com/data/component-bom-b01"
+            }
+          ],
+          "http://www/example.com/ont/name": [
+            {
+              "@value": "Component 1"
+            }
+          ],
+          "http://www/example.com/ont/recycled-content-percentage": [
+            {
+              "@value": "80",
+              "@type": "http://www.w3.org/2001/XMLSchema#integer"
+            }
+          ]
+        },
+        {
+          "@id": "http://www/example.com/data/component-c02",
+          "@type": [
+            "http://www/example.com/ont/Component"
+          ],
+          "http://www/example.com/ont/has-component-bom": [
+            {
+              "@id": "http://www/example.com/data/component-bom-b02"
+            }
+          ],
+          "http://www/example.com/ont/name": [
+            {
+              "@value": "Component 2"
+            }
+          ],
+          "http://www/example.com/ont/recycled-content-percentage": [
+            {
+              "@value": "20",
+              "@type": "http://www.w3.org/2001/XMLSchema#integer"
+            }
+          ]
+        },
+        {
+          "@id": "http://www/example.com/data/component-c03",
+          "@type": [
+            "http://www/example.com/ont/Component"
+          ],
+          "http://www/example.com/ont/has-component-bom": [
+            {
+              "@id": "http://www/example.com/data/component-bom-b03"
+            }
+          ],
+          "http://www/example.com/ont/name": [
+            {
+              "@value": "Component 3"
+            }
+          ],
+          "http://www/example.com/ont/recycled-content-percentage": [
+            {
+              "@value": "0",
+              "@type": "http://www.w3.org/2001/XMLSchema#integer"
+            }
+          ]
+        }
+      ],
+      "proof": {
+        "type": "Ed25519Signature2020",
+        "created": "2024-03-19T00:17:08Z",
+        "verificationMethod": "http://localhost:8080/example/profile/card#key",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z4g3i72NBJp83thxLSujD3Vg2t8kZcyjvUv2AN8dJBC6nsPWkgwUuFMHJuY2SwEHfr7EjBgkofA66xa4tEvFzGgU5"
+      }
+    }
