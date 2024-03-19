@@ -1,4 +1,5 @@
 import CheckIcon from "@mui/icons-material/Check";
+import GppMaybeIcon from '@mui/icons-material/GppMaybe';
 import {CircularProgress, Tooltip} from "@mui/material";
 import {Component, useState} from "react";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
@@ -43,6 +44,12 @@ async function main() {
   console.log(keyExport)
 }
 main().then().catch(console.error)
+
+const VERIFICATION_STATES = {
+  FAILED: 0,
+  SUCCESS: 1,
+  ERROR: 2
+}
 /**
  * @param {object} props - the props passed to the component
  * @param {object} props.context - the query context
@@ -57,8 +64,24 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
   }
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isVerified, setIsVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState('NOT_VERIFIED');
   const [needsVerification, setNeedsVerification] = useState(false);
+
+  function isValidVerifiableCredential(credential) {
+    // Check for the '@context' property - it's necessary to understand the JSON keys and values
+    const hasContext = credential['@context'] !== undefined;
+
+    // Check for the 'type' property and that it includes 'VerifiableCredential'
+    const hasType = Array.isArray(credential.type) && credential.type.includes('VerifiableCredential');
+
+    // Check for the 'credentialSubject' property which represents who the credential is about
+    const hasCredentialSubject = credential.credentialSubject !== undefined;
+
+    // Check for the 'issuer' property which represents who issued the credential
+    const hasIssuer = credential.issuer !== undefined;
+
+    return hasContext && hasType && hasCredentialSubject && hasIssuer;
+  }
 
   const getVCForSourceOption1 = async (source, fetchFunction) => {
     console.info('getVCForSourceOption1: VC is a separate resource located at `${source}-vc`')
@@ -75,6 +98,7 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
         'accept': 'application/ld+json'
       }});
     const vc = await response.json()
+    console.log({vc})
     return vc
   }
 
@@ -100,7 +124,7 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
       /**
        * Document loader creation
        */
-      const controlledDoc =
+      const controllerDoc =
           {
             "@context": [
               "https://www.w3.org/ns/did/v1"
@@ -114,7 +138,7 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
             ]
           }
 
-      jdl.addStatic(keyExport.controller, controlledDoc)
+      jdl.addStatic(keyExport.controller, controllerDoc)
       jdl.addStatic(keyExport.id, keyExport)
       jdl.addStatic(
           CREDENTIALS_CONTEXT_V1_URL,
@@ -130,8 +154,6 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
         return await dl(url)
       }
 
-
-
       // const vc = await jsigs.sign(
       //     unsignedCredential,
       //     {
@@ -146,6 +168,8 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
 
       // const vc  = await getVCForSourceOption1(source, fetchFunction)
       const vc  = await getVCForSourceOption2(source, fetchFunction)
+      if(!isValidVerifiableCredential(vc))
+        throw new Error('Not verifiable!')
 
 
       // Verify
@@ -157,13 +181,12 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
             documentLoader
           }
       )
-      console.log(verificationResult)
-      // TODO: throw error when verified == false?
-      return verificationResult.verified
+      
+      return verificationResult.verified ? VERIFICATION_STATES.SUCCESS : VERIFICATION_STATES.FAILED
 
     } catch (error) {
       console.error(error)
-      return false;
+      return VERIFICATION_STATES.ERROR
     }
   };
 
@@ -182,19 +205,30 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
     if (isLoading) {
       return <CircularProgress size={20}/>;
     } else {
-      if (isVerified) {
-        return (
-          <Tooltip title="Verification succeeded">
-            <CheckIcon size="small"/>
-          </Tooltip>
+      switch (isVerified) {
+        case VERIFICATION_STATES.SUCCESS:
+          return (
+            <Tooltip title="Verification succeeded">
+              <CheckIcon size="small"/>
+            </Tooltip>
         );
-      } else {
-        return (
-          <Tooltip title="Verification failed">
-            <CancelIcon size="small"/>
-          </Tooltip>
-        );
+          break;
+        case VERIFICATION_STATES.FAILED:
+          return (
+              <Tooltip title="Verification failed">
+                <CancelIcon size="small"/>
+              </Tooltip>
+          );
+          break;
+        case VERIFICATION_STATES.ERROR:
+          return (
+              <Tooltip title="Verification error">
+                <GppMaybeIcon size="small"/>
+              </Tooltip>
+          );
+          break;
       }
+
     }
   } else {
     return (
