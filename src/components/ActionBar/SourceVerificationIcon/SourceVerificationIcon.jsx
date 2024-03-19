@@ -60,14 +60,27 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
   const [isVerified, setIsVerified] = useState(false);
   const [needsVerification, setNeedsVerification] = useState(false);
 
+  const getVCForSourceOption1 = async (source, fetchFunction) => {
+    console.info('getVCForSourceOption1: VC is a separate resource located at `${source}-vc`')
+    const vcResponse = await fetchFunction(`${source}-vc`)
+    if(!vcResponse.ok)
+      throw new Error(`Failed fetching VC for source ${source}. Details: ${vcResponse.statusText} (${vcResponse.status})`)
+    const vc = await(vcResponse).json()
+    return vc
+  }
+
+  const getVCForSourceOption2 = async (source, fetchFunction) => {
+    console.info('getVCForSourceOption2: source is the actual VC')
+    const response = await fetchFunction(source,{headers: {
+        'accept': 'application/ld+json'
+      }});
+    const vc = await response.json()
+    return vc
+  }
+
   // This function should be replaced by the actual verification function
   const verifyFunction = async (source, fetchFunction) => {
     try {
-      const response = await fetchFunction(source,{headers: {
-        'accept': 'application/ld+json'
-        }});
-
-      const payload = await response.json()
 
       const key = await getKeypair()
       const keyExport = await key.export({publicKey: true, secretKey:true})
@@ -130,10 +143,9 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
       //
       // console.log(vc)
 
-      const vcResponse = await fetchFunction(`${source}-vc`)
-      if(!vcResponse.ok)
-        throw new Error(`Failed fetching VC for source ${source}. Details: ${vcResponse.statusText} (${vcResponse.status})`)
-      const vc = await(vcResponse).json()
+
+      // const vc  = await getVCForSourceOption1(source, fetchFunction)
+      const vc  = await getVCForSourceOption2(source, fetchFunction)
 
 
       // Verify

@@ -87,7 +87,7 @@
       "id": "4200",
       "comunicaContext": {
         "sources": [
-            "http://localhost:8080/example/favourite-books", 
+            "http://localhost:8080/example/favourite-books",
             "http://localhost:8080/example/wish-list"
           ],
         "lenient": true
@@ -180,6 +180,16 @@
           "http://localhost:8080/example/boms",
           "http://localhost:8080/example/materials"
         ],
+        "lenient": true
+      }
+    },
+    {
+      "queryLocation": "components.rq",
+      "name": "Components (as VC payload)",
+      "description": "Query components (no details about materials)",
+      "id": "7002",
+      "comunicaContext": {
+        "sources": ["http://localhost:8080/example/components-vc"],
         "lenient": true
       }
     }
