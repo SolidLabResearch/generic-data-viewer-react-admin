@@ -1,0 +1,10 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix solid: <http://www.w3.org/ns/solid/terms#>.
+
+<http://localhost:8080/verifiable-example/profile/card> a foaf:PersonalProfileDocument;
+    foaf:maker <#me>;
+    foaf:primaryTopic <#me>.
+<#me> a foaf:Person;
+    solid:oidcIssuer <http://localhost:8080/>;
+    <https://w3id.org/security#assertionMethod> <http://localhost:8080/verifiable-example/profile/key>;
+    <https://w3id.org/security#verificationMethod> <http://localhost:8080/verifiable-example/profile/key>.

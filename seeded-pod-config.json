@@ -13,5 +13,10 @@
     "podName": "invalidWebId",
     "email": "badRdf@example.com",
     "password": "rdf123"
+  },
+  {
+    "podName": "verifiable-example",
+    "email": "hello@verifiable-example.com",
+    "password": "abc123"
   }
 ]

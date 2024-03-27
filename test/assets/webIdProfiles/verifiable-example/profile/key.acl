@@ -1,0 +1,9 @@
+<http://localhost:8080/verifiable-example/.acl#owner> a <http://www.w3.org/ns/auth/acl#Authorization>;
+    <http://www.w3.org/ns/auth/acl#agent> <http://localhost:8080/verifiable-example/profile/card#me>;
+    <http://www.w3.org/ns/auth/acl#mode> <http://www.w3.org/ns/auth/acl#Read>, <http://www.w3.org/ns/auth/acl#Write>, <http://www.w3.org/ns/auth/acl#Control>;
+    <http://www.w3.org/ns/auth/acl#accessTo> <http://localhost:8080/verifiable-example/profile/key>;
+    <http://www.w3.org/ns/auth/acl#default> <http://localhost:8080/verifiable-example/profile/key>.
+<#cfd90b5d-d315-42cd-8938-bee0981bd530> a <http://www.w3.org/ns/auth/acl#Authorization>;
+    <http://www.w3.org/ns/auth/acl#mode> <http://www.w3.org/ns/auth/acl#Read>;
+    <http://www.w3.org/ns/auth/acl#accessTo> <http://localhost:8080/verifiable-example/profile/key>;
+    <http://www.w3.org/ns/auth/acl#agentClass> <http://xmlns.com/foaf/0.1/Agent>.

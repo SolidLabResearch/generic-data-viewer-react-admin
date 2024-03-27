@@ -1,0 +1,7 @@
+{
+  "@context": "https://w3id.org/security/multikey/v1",
+  "id": "http://localhost:8080/verifiable-example/profile/key",
+  "type": "Multikey",
+  "controller": "http://localhost:8080/verifiable-example/profile/card#me",
+  "publicKeyMultibase": "z6MkhjfxuFhkoqjxwQeyodmqX4cwu4xewwkK7pW1jnWBvSFL"
+}

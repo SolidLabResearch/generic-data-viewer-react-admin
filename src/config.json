@@ -182,6 +182,20 @@
         ],
         "lenient": true
       }
+    },
+    {
+      "queryLocation": "components.rq",
+      "name": "Verifiable Components",
+      "description": "Components are queried from three kinds of sources: a non-verifiable source, a successfully verifiable source, and a verifiable source with an incorrect proof.",
+      "id": "7002",
+      "comunicaContext": {
+        "sources": [
+          "http://localhost:8080/example/components",
+          "http://localhost:8080/verifiable-example/components-vc",
+          "http://localhost:8080/verifiable-example/components-vc-incorrect-proof"
+        ],
+        "lenient": true
+      }
     }
   ]
 }

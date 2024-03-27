@@ -1,10 +1,28 @@
-import CheckIcon from "@mui/icons-material/Check";
 import {CircularProgress, Tooltip} from "@mui/material";
 import {Component, useState} from "react";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import {Button} from "react-admin";
-import CancelIcon from "@mui/icons-material/Cancel";
 import PropTypes from "prop-types";
+import GppBadIcon from '@mui/icons-material/GppBad'; // FAILED
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser'; // NOT VERIFIABLE
+import PrivacyTipIcon from '@mui/icons-material/PrivacyTip'; // SUCCESS
+import WarningIcon from '@mui/icons-material/Warning'; // ERROR
+
+class API { // TODO: refactor
+  constructor(origin, port, routes) {
+    this.baseUrl = `${origin}:${port}`
+    for (const r of routes) {
+      this[r] = new URL(r, this.baseUrl).toString()
+    }
+  }
+}
+const vcAPI = new API('http://localhost', 4444, ['verify']) // TODO: make configurable
+const VERIFICATION_STATES = {
+  NOT_VERIFIED: 'NOT_VERIFIED',
+  VERIFIED: 'VERIFIED',
+  INVALID_SOURCE: 'INVALID_SOURCE',
+  ERROR: 'ERROR'
+}
 
 /**
  * @param {object} props - the props passed to the component
@@ -20,16 +38,47 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
   }
 
   const [isLoading, setIsLoading] = useState(true);
-  const [isVerified, setIsVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState(VERIFICATION_STATES.NOT_CHECKED);
   const [needsVerification, setNeedsVerification] = useState(false);
 
   // This function should be replaced by the actual verification function
   const verifyFunction = async (source, fetchFunction) => {
     try {
-      const response = await fetchFunction(source);
-      return response.ok;
+      console.log(`@verifyFunction: ${source}`)
+      const response = await fetchFunction(source,{headers:{'accept':'application/json'}});
+      const data = await response.json()
+
+      // Use vc-service to verify source
+      const verifyResponse = await fetchFunction(
+          vcAPI.verify,
+          {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({verifiableCredential: data})
+          }
+      )
+
+      if(verifyResponse.ok){
+        const {
+          validationResult: {valid, validationError},
+          verificationResult: {verified, results, error: verificationError}
+        } = await verifyResponse.json()
+
+        if(valid) {
+          if(verified) {
+            return VERIFICATION_STATES.VERIFIED
+          } else {
+            return VERIFICATION_STATES.NOT_VERIFIED
+          }
+
+        } else {
+          return VERIFICATION_STATES.INVALID_SOURCE
+        }
+
+      }
+
     } catch (error) {
-      return false;
+      return VERIFICATION_STATES.ERROR;
     }
   };
 
@@ -48,18 +97,35 @@ function SourceVerificationIcon({context, source, proxyUrl}) {
     if (isLoading) {
       return <CircularProgress size={20}/>;
     } else {
-      if (isVerified) {
-        return (
-          <Tooltip title="Verification succeeded">
-            <CheckIcon size="small"/>
-          </Tooltip>
-        );
-      } else {
-        return (
-          <Tooltip title="Verification failed">
-            <CancelIcon size="small"/>
-          </Tooltip>
-        );
+      switch (isVerified) {
+        case VERIFICATION_STATES.VERIFIED:
+          return (
+              <Tooltip title="Verification succeeded">
+                <VerifiedUserIcon size="small"/>
+              </Tooltip>
+          );
+          break;
+        case VERIFICATION_STATES.INVALID_SOURCE:
+          return (
+              <Tooltip title="No credential found to verify">
+                <PrivacyTipIcon size="small"/>
+              </Tooltip>
+          );
+          break;
+        case VERIFICATION_STATES.NOT_VERIFIED:
+          return (
+              <Tooltip title="Verification failed">
+                <GppBadIcon size="small"/>
+              </Tooltip>
+          );
+          break;
+        case VERIFICATION_STATES.ERROR:
+          return (
+              <Tooltip title="Error">
+                <WarningIcon size="small"/>
+              </Tooltip>
+          );
+          break;
       }
     }
   } else {
