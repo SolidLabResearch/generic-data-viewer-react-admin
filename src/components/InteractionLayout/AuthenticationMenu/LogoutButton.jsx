@@ -23,6 +23,7 @@ const LogoutButton = forwardRef((props, ref) => {
   function handleLogout(event) {
     event.preventDefault();
     if (isLoggedIn) {
+      redirect("/");
       logout();
     } else {
       redirect("/login");

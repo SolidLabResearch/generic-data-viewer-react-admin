@@ -1,0 +1,21 @@
+PREFIX schema: <http://schema.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.com/>
+PREFIX elec: <http://w3id.org/CEON/demo/electronics/>
+PREFIX ns1: <http://w3id.org/CEON/ontology/actorODP/>
+PREFIX ns2: <http://qudt.org/schema/qudt/>
+PREFIX ns3: <http://w3id.org/CEON/ontology/resourceODP/>
+PREFIX ns4: <http://w3id.org/CEON/ontology/provenance/>
+PREFIX ns5: <http://w3id.org/CEON/ontology/product/>
+
+SELECT ?ComponentLabel ?REACHCertificate_url
+WHERE {
+        ?product rdfs:label $ProductLabel ;
+        ns5:hasProductComponent ?component .
+        ?component rdfs:label ?ComponentLabel .
+      OPTIONAL {
+          ?s_reach ns4:statementAbout ?component;
+          ns5:complianceWith elec:REACH;
+          ns5:hasCertificate ?REACHCertificate_url.
+      }
+}

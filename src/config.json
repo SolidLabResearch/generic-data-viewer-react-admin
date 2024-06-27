@@ -7,287 +7,277 @@
   "titleColor": "black",
   "textColor": "#1976D2",
   "queryFolder": "queries",
-  "httpProxy": "http://localhost:8000/",
+  "httpProxy": "https://css11.onto-deside.ilabt.imec.be/",
   "showMilliseconds": false,
-  "defaultIDP": "http://localhost:8080",
+  "defaultIDP": "https://css11.onto-deside.ilabt.imec.be/",
   "footer": "<p><a href='https://idlab.technology/'>IDLab</a> - <a href='https://www.imec.be/nl'>imec</a> - <a href='https://www.ugent.be/'>UGent</a></p>",
-  "introductionText": "Please log in as the appropriate actor and make your choice in the menu on the left.",
+  "introductionText": "Please select a query from the menu on the left.",
   "queryGroups" : [
     {
-      "id": "a-ex",
-      "name": "General examples"
-    },
-    {
-      "id": "b-prj",
-      "name": "Project related examples",
+      "id": "evaluation-electronics",
+      "name": "Evaluation June 2024 - Electronics",
       "icon": "FactoryIcon"
     },
     {
-      "id": "c-tst",
-      "name": "For testing only",
-      "icon": "BugReportIcon"
+      "id": "evaluation-textile",
+      "name": "Evaluation June 2024 - Textile",
+      "icon": "FactoryIcon"
     }
   ],
   "queries": [
     {
-      "id": "1000",
-      "queryGroupId": "a-ex",
-      "queryLocation": "idols.rq",
-      "name": "My idols",
-      "description": "Demonstrates a simple query, using a proxy",
+      "id": "20",
+      "queryGroupId": "evaluation-electronics",
+      "queryLocation": "electronics_products.rq",
+      "name": "Overview",
+      "description": "All products with the data points selected for this evaluation",
       "comunicaContext": {
-        "sources": ["http://localhost:8001/example/idols"],
-        "useProxy": true
-      }
-    },
-    {
-      "id": "1010",
-      "queryGroupId": "a-ex",
-      "queryLocation": "images_test.rq",
-      "name": "Some images",
-      "description": "Demonstrates how to show images in a query result",
-      "icon": "PhotoIcon",
-      "comunicaContext": {
-        "sources": ["http://localhost:8080/example/cute-cats"]
-      }
-    },
-    {
-      "id": "1020",
-      "queryGroupId": "a-ex",
-      "queryLocation": "ask_picasso.rq",
-      "name": "Is there an artist influenced by Picasso?",
-      "description": "Demonstrates an ASK query",
-      "icon": "BrushIcon",
-      "comunicaContext": {
-        "sources": ["https://fragments.dbpedia.org/2016-04/en"]
-      },
-      "askQuery": {
-        "trueText": "There is an artist who is inspired by Picasso!",
-        "falseText": "There is no artist who is inspired by Picasso."
-      }
-    },
-    {
-      "id": "1030",
-      "queryGroupId": "a-ex",
-      "queryLocation": "construct_picasso.rq",
-      "name": "A graph of artists influenced by Picasso",
-      "description": "Demonstrates a CONSTRUCT query",
-      "icon": "BrushIcon",
-      "comunicaContext": {
-        "sources": ["http://localhost:8080/example/artists"]
-      }
-    },
-    {
-      "id": "1040",
-      "queryGroupId": "a-ex",
-      "queryLocation": "average.rq",
-      "name": "Average value",
-      "description": "Demonstrates a query calculating some average",
-      "icon": "FunctionsIcon",
-      "comunicaContext": {
-        "sources": [
-          "http://localhost:8080/example/values"
-        ]
-      }
-    },
-    {
-      "id": "1050",
-      "queryGroupId": "a-ex",
-      "queryLocation": "books.rq",
-      "name": "A secret list of my favorite books",
-      "description": "Demonstrates a query whose source requires authentication",
-      "icon": "MenuBookIcon",
-      "comunicaContext": {
-        "sources": ["http://localhost:8080/example/favourite-books"]
-      }
-    },
-    {
-      "id": "1060",
-      "queryGroupId": "a-ex",
-      "queryLocation": "books.rq",
-      "name": "A public list of books I'd love to own",
-      "description": "Demonstrates a query whose source does not require authentication",
-      "icon": "MenuBookIcon",
-      "comunicaContext": {
-        "sources": ["http://localhost:8080/example/wish-list"]
-      }
-    },
-    {
-      "id": "1070",
-      "queryGroupId": "a-ex",
-      "queryLocation": "musicians.rq",
-      "name": "A query about musicians",
-      "description": "Demonstrates what happens if one of the sources is not available (fetch failure)",
-      "icon": "MusicNoteIcon",
-      "comunicaContext": {
-        "sources": [
-          "http://localhost:8080/example/favourite-musicians",
-          "http://www.example.com/fetch-failure-but-query-success"
+        "sources": ["https://css11.onto-deside.ilabt.imec.be/electronics_user1/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user2/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user3/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user4/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user5/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user6/ceon-electronics/products"
         ],
         "lenient": true
       }
     },
     {
-      "id": "1080",
-      "queryGroupId": "a-ex",
-      "queryLocation": "musicians_variables.rq",
-      "name": "A templated query about musicians",
-      "description": "Demonstrates the usage of templated queries",
-      "icon": "MusicNoteIcon",
+      "id": "21",
+      "queryGroupId": "evaluation-electronics",
+      "queryLocation": "electronics_resilience.rq",
+      "name": "Resilience of the supply chain of a product",
+      "description": "How resilient is the supply chain of a product, based on the origin of the materials?",
       "variables": {
-        "genre": [
-          "\"Romantic\"",
-          "\"Baroque\"",
-          "\"Classical\""
+        "ProductLabel": [
+          "\"Speaker\"",
+          "\"Electrical structure\"",
+          "\"Magnet\"",
+          "\"Aluminum basket\"",
+          "\"Coil\"",
+          "\"Cone\""
         ]
       },
       "comunicaContext": {
-        "sources": ["http://localhost:8080/example/favourite-musicians"]
-      }
-    },
-    {
-      "id": "1090",
-      "queryGroupId": "a-ex",
-      "queryLocation": "components.rq",
-      "name": "Source verification",
-      "description": "Demonstrates source verification. Query components from three kinds of sources: a non-verifiable source, a successfully verifiable source, and a verifiable source with an incorrect proof.",
-      "comunicaContext": {
-        "sources": [
-          "http://localhost:8080/verifiable-example/components-vc",
-          "http://localhost:8080/verifiable-example/components-vc-incorrect-proof",
-          "http://localhost:8080/example/components"
-        ]
-      }
-    },
-    {
-      "id": "1100",
-      "queryGroupId": "a-ex",
-      "queryLocation": "components_materials.rq",
-      "name": "Sources from an index file",
-      "description": "Query components (including details about materials) with the sources obtained from index files",
-      "sourcesIndex": {
-        "url": "http://localhost:8080/example/index-example-texon-only",
-        "queryLocation": "/sourceQueries/index_example_texon_only_source.rq"
-      }
-    },
-    {
-      "id": "2000",
-      "queryGroupId": "b-prj",
-      "queryLocation": "components.rq",
-      "name": "Components",
-      "description": "Query components",
-      "comunicaContext": {
-        "sources": [
-          "http://localhost:8080/example/components"
-        ]
-      }
-    },
-    {
-      "id": "2010",
-      "queryGroupId": "b-prj",
-      "queryLocation": "components_materials.rq",
-      "name": "Components and their materials",
-      "description": "Query components (including details about materials)",
-      "comunicaContext": {
-        "sources": [
-          "http://localhost:8080/example/components",
-          "http://localhost:8080/example/boms",
-          "http://localhost:8080/example/materials"
+        "sources": ["https://css11.onto-deside.ilabt.imec.be/electronics_user1/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user2/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user3/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user4/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user5/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user6/ceon-electronics/products"
         ],
         "lenient": true
       }
     },
     {
-      "id": "9000",
-      "queryGroupId": "c-tst",
-      "queryLocation": "books.rq",
-      "name": "A query on a secret and a public list of books",
-      "description": "Demonstrates a query on a source requiring authentication and a source not requiring authentication",
-      "icon": "MenuBookIcon",
-      "comunicaContext": {
-        "sources": [
-          "http://localhost:8080/example/favourite-books",
-          "http://localhost:8080/example/wish-list"
-        ],
-        "lenient": true
-      }
-    },
-    {
-      "id": "9010",
-      "queryGroupId": "c-tst",
-      "queryLocation": "musicians_variables2.rq",
-      "name": "A templated query about musicians, two variables",
-      "description": "Demonstrates the usage of templated queries, here with two variables",
-      "icon": "MusicNoteIcon",
+      "id": "22",
+      "queryGroupId": "evaluation-electronics",
+      "queryLocation": "electronics_REACH.rq",
+      "name": "REACH compliance of product components",
+      "description": "Is my product REACH compliant?",
       "variables": {
-        "genre": [
-          "\"Romantic\"",
-          "\"Baroque\"",
-          "\"Classical\""
+          "ProductLabel": [
+            "\"Speaker\"",
+            "\"Electrical structure\"",
+            "\"Magnet\"",
+            "\"Aluminum basket\"",
+            "\"Coil\"",
+            "\"Cone\""
+          ]
+      },
+      "comunicaContext": {
+        "sources": ["https://css11.onto-deside.ilabt.imec.be/electronics_user1/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user2/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user3/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user4/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user5/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user6/ceon-electronics/products"
         ],
-        "sameAsUrl": [
-          "<https://en.wikipedia.org/wiki/Ludwig_van_Beethoven>",
-          "<https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart>",
-          "<https://en.wikipedia.org/wiki/Johann_Sebastian_Bach>",
-          "<https://en.wikipedia.org/wiki/Franz_Schubert>"
+        "lenient": true
+      }
+    },
+    {
+      "id": "23",
+      "queryGroupId": "evaluation-electronics",
+      "queryLocation": "electronics_rare_earth.rq",
+      "name": "Rare Earth content on product components",
+      "description": "Does my product contain rare earth materials?",
+      "variables": {
+        "ProductLabel": [
+          "\"Speaker\"",
+          "\"Electrical structure\"",
+          "\"Magnet\"",
+          "\"Aluminum basket\"",
+          "\"Coil\"",
+          "\"Cone\""
         ]
       },
       "comunicaContext": {
-        "sources": [
-          "http://localhost:8080/example/favourite-musicians"
-        ]
-      }
-    },
-    {
-      "id": "9020",
-      "queryGroupId": "c-tst",
-      "queryLocation": "components_materials.rq",
-      "name": "Components and their materials, with sources from index file also containing an unauthorized source",
-      "description": "Query components (including details about materials) with the sources obtained from index files, including an unauthorized source of favourite books, to check lenient",
-      "sourcesIndex": {
-        "url": "http://localhost:8080/example/index-example-with-unauthorized-source",
-        "queryLocation": "/sourceQueries/index_example_with_unauthorized_source.rq"
-      }
-    },
-    {
-      "id": "9030",
-      "queryGroupId": "c-tst",
-      "queryLocation": "components_materials.rq",
-      "name": "Components and their materials, with mixed sources from comunicaContext and index file",
-      "description": "Query components (including details about materials) with sources obtained from both comunicaContext.sources and index files",
-      "comunicaContext": {
-        "sources": [
-          "http://localhost:8080/example/favourite-books",
-          "http://localhost:8080/example/components"
+        "sources": ["https://css11.onto-deside.ilabt.imec.be/electronics_user1/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user2/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user3/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user4/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user5/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user6/ceon-electronics/products"
         ],
-        "lenient" : true
-      },
-      "sourcesIndex": {
-        "url": "http://localhost:8080/example/index-example-texon-only",
-        "queryLocation": "/sourceQueries/index_example_texon_only_source.rq"
+        "lenient": true
       }
     },
     {
-      "id": "9040",
-      "queryGroupId": "c-tst",
-      "queryLocation": "spo_distinct_offset_limit.rq",
-      "name": "A test on DISTINCT LIMIT OFFSET",
-      "description": "Query two sources containing duplicated triples. The query uses DISTINCT, LIMIT and OFFSET",
-      "comunicaContext": {
-        "sources": [
-          "http://localhost:8080/example/dup1",
-          "http://localhost:8080/example/dup2"
+      "id": "24",
+      "queryGroupId": "evaluation-electronics",
+      "queryLocation": "electronics_recycled.rq",
+      "name": "Recycled content of product components",
+      "description": "Does my product contain recycled materials?",
+      "variables": {
+        "ProductLabel": [
+          "\"Speaker\"",
+          "\"Electrical structure\"",
+          "\"Magnet\"",
+          "\"Aluminum basket\"",
+          "\"Coil\"",
+          "\"Cone\""
         ]
+      },
+      "comunicaContext": {
+        "sources": ["https://css11.onto-deside.ilabt.imec.be/electronics_user1/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user2/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user3/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user4/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user5/ceon-electronics/products",
+          "https://css11.onto-deside.ilabt.imec.be/electronics_user6/ceon-electronics/products"
+        ],
+        "lenient": true
+      }
+    }, {
+      "id": "30",
+      "queryGroupId": "evaluation-textile",
+      "queryLocation": "spo.rq",
+      "name": "All accessible data",
+      "description": "All data accessible for the logged in user",
+      "comunicaContext": {
+        "sources": ["https://css11.onto-deside.ilabt.imec.be/textile_user1/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user2/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user3/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user4/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user6/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user7/ceon/data"
+        ],
+        "lenient": true
+      }
+    }, {
+      "id": "31",
+      "queryGroupId": "evaluation-textile",
+      "queryLocation": "textile_products.rq",
+      "name": "Product overview",
+      "description": "Selected data per product",
+      "comunicaContext": {
+        "sources": ["https://css11.onto-deside.ilabt.imec.be/textile_user1/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user2/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user3/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user4/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user6/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user7/ceon/data"
+        ],
+        "lenient": true
+      }
+    }, {
+      "id": "32",
+      "queryGroupId": "evaluation-textile",
+      "queryLocation": "textile_product_composition.rq",
+      "name": "Product components data",
+      "description": "Selected data of the components of product",
+      "variables": {
+        "ProductLabel": [
+          "\"Verde\"",
+          "\"Ecostrobe\"",
+          "\"Laces\"",
+          "\"Vogue\"",
+          "\"Super Shoe\"",
+          "\"Kabru\""
+        ]
+      },
+      "comunicaContext": {
+        "sources": ["https://css11.onto-deside.ilabt.imec.be/textile_user1/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user2/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user3/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user4/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user6/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user7/ceon/data"
+        ],
+        "lenient": true
+      }
+    }, {
+      "id": "33",
+      "queryGroupId": "evaluation-textile",
+      "queryLocation": "textile_matter_composition.rq",
+      "name": "Product matter composition",
+      "description": "Matter composition of a product",
+      "variables": {
+        "ProductLabel": [
+          "\"Verde\"",
+          "\"Ecostrobe\"",
+          "\"Laces\"",
+          "\"Vogue\"",
+          "\"Super Shoe\"",
+          "\"Kabru\""
+        ]
+      },
+      "comunicaContext": {
+        "sources": ["https://css11.onto-deside.ilabt.imec.be/textile_user1/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user2/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user3/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user4/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user6/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user7/ceon/data"
+        ],
+        "lenient": true
+    }},
+    {
+      "id": "34",
+      "queryGroupId": "evaluation-textile",
+      "queryLocation": "textile_disassembly.rq",
+      "name": "Product disassembly",
+      "description": "Disassembly method of a product and the original input products",
+      "variables": {
+        "ProductLabel": [
+          "\"Super Shoe\"",
+          "\"Soled and Insoled Shoe\"",
+          "\"Soled Shoe\"",
+          "\"Vogue\""
+        ]
+      },
+      "comunicaContext": {
+        "sources": ["https://css11.onto-deside.ilabt.imec.be/textile_user1/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user2/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user3/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user4/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user6/ceon/data",
+          "https://css11.onto-deside.ilabt.imec.be/textile_user7/ceon/data"
+        ],
+        "lenient": true
       }
     },
     {
-      "id": "9050",
-      "queryGroupId": "c-tst",
-      "queryLocation": "so_distinct.rq",
-      "name": "A test on counting the total number results",
-      "description": "Query a source containing ?s ?p1 ?o and ?s ?p2 ?o with p1 != p2 and request only ?s ?o",
+      "id": "35",
+      "queryGroupId": "evaluation-textile",
+      "queryLocation": "textile_products.rq",
+      "name": "Product overview with index",
+      "description": "Selected data per product",
+      "sourcesIndex": {
+        "url": "https://css11.onto-deside.ilabt.imec.be/textile_user9/ceon/index",
+        "queryLocation": "sourceQueries/seeAlso.rq"
+      }
+    },
+    {
+      "id": "36",
+      "queryGroupId": "evaluation-textile",
+      "queryLocation": "sourceQueries/seeAlso.rq",
+      "name": "Index list",
       "comunicaContext": {
-        "sources": ["http://localhost:8080/example/dup1"]
+        "sources": ["https://css11.onto-deside.ilabt.imec.be/textile_user9/ceon/index"
+        ],
+        "lenient": true
       }
     }
   ]

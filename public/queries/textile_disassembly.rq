@@ -1,0 +1,25 @@
+PREFIX schema: <http://schemaorg/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.com/>
+PREFIX qudt: <http://qudt.org/schema/qudt/>
+PREFIX ceon-actorODP: <http://w3id.org/CEON/ontology/actorODP/>
+PREFIX ceon-resourceODP: <http://w3id.org/CEON/ontology/resourceODP/>
+PREFIX ceon-product: <http://w3id.org/CEON/ontology/product/>
+PREFIX ceon-provenance: <http://w3id.org/CEON/ontology/provenance/>
+PREFIX ceon-material: <http://w3id.org/CEON/ontology/material/>
+PREFIX ceon-processODP: <http://w3id.org/CEON/ontology/processODP/>
+PREFIX ceon-process:  <http://w3id.org/CEON/ontology/process/>
+PREFIX textile:  <http://w3id.org/CEON/demo/textile/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?DisassemblyMethod_url ?OriginalInputProductLabel (BOUND(?DisassemblyMethod2_url) AS ?hasDisassemblyMethod)
+WHERE {
+    ?Product rdfs:label $ProductLabel.
+    ?AssemblingProcess ceon-processODP:hasOutput ?Product.
+   OPTIONAL { ?AssemblingProcess ex:hasReverseProcessType ?DisassemblyMethod_url }
+   OPTIONAL { ?AssemblingProcess ceon-processODP:hasInput ?OriginalInputProduct.
+        OPTIONAL { ?OriginalInputProduct rdfs:label ?OriginalInputProductLabel }
+        OPTIONAL { ?AssemblingProcess2 ceon-processODP:hasOutput ?OriginalInputProduct;
+             ex:hasReverseProcessType ?DisassemblyMethod2_url }
+        }
+}

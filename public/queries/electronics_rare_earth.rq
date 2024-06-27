@@ -1,0 +1,37 @@
+PREFIX schema: <http://schema.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.com/>
+PREFIX elec: <http://w3id.org/CEON/demo/electronics/>
+PREFIX ns1: <http://w3id.org/CEON/ontology/actorODP/>
+PREFIX ns2: <http://qudt.org/schema/qudt/>
+PREFIX ns3: <http://w3id.org/CEON/ontology/resourceODP/>
+PREFIX ns4: <http://w3id.org/CEON/ontology/provenance/>
+PREFIX ns5: <http://w3id.org/CEON/ontology/product/>
+
+SELECT DISTINCT ?ComponentLabel (BOUND(?RareEarthMaterial) AS ?containsRareEarthMaterial) ?NeodymiumPercentage ?DysprosiumPercentage
+WHERE {
+        ?product rdfs:label $ProductLabel ;
+            ns5:hasProductComponent ?component .
+        ?component rdfs:label ?ComponentLabel .
+      OPTIONAL {
+          ?s1 ns1:participantRole <http://w3id.org/CEON/ontology/actor/manufacturer>;
+          ns1:participatingActor ?company ;
+          ns1:participatingResource ?component .
+          OPTIONAL {
+              ?component ns3:hasMatter elec:RareEarthMaterial.
+              BIND ( elec:RareEarthMaterial AS ?RareEarthMaterial).
+          }
+          OPTIONAL {
+               ?s2 ns5:associatedWithMatter ex:Nd;
+                ns2:hasUnit <https://qudt.org/vocab/unit/PERCENT>;
+                ns2:numericalValue ?NeodymiumPercentage;
+                ns5:compositionOf ?component.
+          }
+          OPTIONAL {
+                ?s3 ns5:associatedWithMatter ex:Dy;
+                ns2:hasUnit <https://qudt.org/vocab/unit/PERCENT>;
+                ns2:numericalValue ?DysprosiumPercentage;
+                ns5:compositionOf ?component.
+          }
+      }
+}

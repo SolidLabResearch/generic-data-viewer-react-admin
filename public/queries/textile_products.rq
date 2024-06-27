@@ -1,0 +1,57 @@
+PREFIX schema: <http://schemaorg/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.com/>
+PREFIX qudt: <http://qudt.org/schema/qudt/>
+PREFIX ceon-actorODP: <http://w3id.org/CEON/ontology/actorODP/>
+PREFIX ceon-resourceODP: <http://w3id.org/CEON/ontology/resourceODP/>
+PREFIX ceon-product: <http://w3id.org/CEON/ontology/product/>
+PREFIX ceon-provenance: <http://w3id.org/CEON/ontology/provenance/>
+PREFIX ceon-material: <http://w3id.org/CEON/ontology/material/>
+PREFIX ceon-processODP: <http://w3id.org/CEON/ontology/processODP/>
+PREFIX ceon-process:  <http://w3id.org/CEON/ontology/process/>
+PREFIX textile:  <http://w3id.org/CEON/demo/textile/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT ?ProductLabel ?Type ?Origin ?Color ?DyeMethod ?DyeStuff ?FinishingStep
+    ?WaterProperty ?ChemicalCompliance ?IncludesTrims ?ContainsMetal ?ProductDesignForRecycling
+    ?REACHCertificate_url ?MSDSCertificate_url ?BiodegradabilityTest_url
+WHERE {
+    ?Product a textile:TextileProduct ;
+     rdfs:label ?ProductLabel ;
+    OPTIONAL {?Product textile:hasType ?Type}
+
+OPTIONAL {?Product textile:hasOrigin ?Origin}
+    OPTIONAL {?Product textile:hasColor ?Color_url}
+    BIND (REPLACE(STR(?Color_url), "^.*/([^/]*)$", "$1") as ?Color)
+    OPTIONAL {?Product textile:hasDyeMethod ?DyeMethod_url}
+    BIND (REPLACE(STR(?DyeMethod_url), "^.*/([^/]*)$", "$1") as ?DyeMethod)
+    OPTIONAL {?Product textile:hasDyeStuff ?DyeStuff_url}
+    BIND (REPLACE(STR(?DyeStuff_url), "^.*/([^/]*)$", "$1") as ?DyeStuff)
+    OPTIONAL {?Product textile:hasFinishingStep ?FinishingStep_url}
+    BIND (REPLACE(STR(?FinishingStep_url), "^.*/([^/]*)$", "$1") as ?FinishingStep)
+    OPTIONAL {?Product textile:hasWaterProperty ?WaterProperty_url}
+    BIND (REPLACE(STR(?WaterProperty_url), "^.*/([^/]*)$", "$1") as ?WaterProperty)
+    OPTIONAL {?Product textile:chemicalCompliance ?ChemicalCompliance}
+    OPTIONAL {?Product textile:includesTrims ?IncludesTrims}
+    OPTIONAL {?Product textile:containsMetal ?ContainsMetal}
+    OPTIONAL {?Product textile:textileProductDesignForRecycling ?ProductDesignForRecycling_url}
+    BIND (REPLACE(STR(?ProductDesignForRecycling_url), "^.*/([^/]*)$", "$1") as ?ProductDesignForRecycling)
+    OPTIONAL {
+        ?s_reach ceon-provenance:statementAbout ?Product;
+        ceon-product:complianceWith textile:REACH;
+        ceon-product:hasCertificate ?REACHCertificate_url.
+    }
+    OPTIONAL {
+        ?s_msds ceon-provenance:statementAbout ?Product;
+        ceon-product:complianceWith textile:MSDS;
+        ceon-product:hasCertificate ?MSDSCertificate_url.
+    }
+    OPTIONAL {
+        ?s_msds ceon-provenance:statementAbout ?Product;
+            textile:biodegradabilityTestAvailable "true"^^xsd:boolean;
+        ceon-product:hasCertificate ?BiodegradabilityTest_url.
+    }
+
+
+
+}

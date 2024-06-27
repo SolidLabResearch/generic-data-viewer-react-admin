@@ -1,0 +1,55 @@
+PREFIX schema: <http://schema.org/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://example.com/>
+PREFIX elec: <http://w3id.org/CEON/demo/electronics/>
+PREFIX ns1: <http://w3id.org/CEON/ontology/actorODP/>
+PREFIX ns2: <http://qudt.org/schema/qudt/>
+PREFIX ns3: <http://w3id.org/CEON/ontology/resourceODP/>
+PREFIX ns4: <http://w3id.org/CEON/ontology/provenance/>
+PREFIX ns5: <http://w3id.org/CEON/ontology/product/>
+
+SELECT ?ProductLabel ?SiteCountry ?REACHCertificate_url (BOUND(?RareEarthMaterial) as ?containsRareEarthMaterial) ?NeodymiumPercentage ?DysprosiumPercentage
+?PreConsumerRecycledMaterialPercentage ?PostConsumerRecycledMaterialPercentage
+WHERE {
+  ?product a elec:ElectronicsProduct ;
+     rdfs:label ?ProductLabel ;
+  OPTIONAL {
+    ?s1 ns1:participantRole <http://w3id.org/CEON/ontology/actor/manufacturer>;
+       ns1:participatingActor ?company ;
+       ns1:participatingResource ?product .
+    ?company elec:siteCountry ?SiteCountry.
+  }
+  OPTIONAL {
+      ?s_reach ns4:statementAbout ?product;
+        ns5:complianceWith elec:REACH;
+        ns5:hasCertificate ?REACHCertificate_url.
+  }
+  OPTIONAL {
+    ?product ns3:hasMatter elec:RareEarthMaterial.
+    BIND(elec:RareEarthMaterial AS ?RareEarthMaterial).
+  }
+  OPTIONAL {
+     ?s2 ns5:associatedWithMatter ex:Nd;
+      ns2:hasUnit <https://qudt.org/vocab/unit/PERCENT>;
+      ns2:numericalValue ?NeodymiumPercentage;
+     ns5:compositionOf ?product.
+    }
+  OPTIONAL {
+    ?s3 ns5:associatedWithMatter ex:Dy;
+    ns2:hasUnit <https://qudt.org/vocab/unit/PERCENT>;
+    ns2:numericalValue ?DysprosiumPercentage;
+    ns5:compositionOf ?product.
+    }
+  OPTIONAL {
+      ?s4 a elec:PreCustomerRecycledContent ;
+        ns2:hasUnit <https://qudt.org/vocab/unit/PERCENT> ;
+        ns2:numericalValue ?PreConsumerRecycledMaterialPercentage;
+        ns4:statementAbout ?product .
+  }
+  OPTIONAL {
+      ?s4 a elec:PostCustomerRecycledContent ;
+      ns2:hasUnit <https://qudt.org/vocab/unit/PERCENT> ;
+      ns2:numericalValue ?PostConsumerRecycledMaterialPercentage;
+      ns4:statementAbout ?product .
+  }
+}
