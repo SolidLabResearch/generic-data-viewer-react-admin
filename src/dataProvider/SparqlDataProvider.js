@@ -46,8 +46,9 @@ export default {
     handleComunicaContextCreation(query);
 
     if (query.sourcesIndex) {
-      const additionalSources = await addComunicaContextSourcesFromSourcesIndex(query);
+      const additionalSources = await addComunicaContextSourcesFromSourcesIndex(query.sourcesIndex);
       query.comunicaContext.sources = [...new Set([...query.comunicaContext.sources, ...additionalSources])];
+      console.log(query.comunicaContext.sources)
     }
 
     if (meta && meta.variables) {
@@ -340,22 +341,23 @@ async function configureBindingStream(bindingStream, variables) {
  * @param {object} sourcesIndex - the sourcesIndex object as found in the configuration
  * @returns {array} array of sources found
  */
-const addComunicaContextSourcesFromSourcesIndex = async (query) => {
+const addComunicaContextSourcesFromSourcesIndex = async (sourcesIndex) => {
   const sourcesList = [];
   try {
     let queryStringIndexSource;
-    if (query.sourcesIndex.queryLocation){
-      const result = await fetch(`${config.queryFolder}${query.sourcesIndex.queryLocation}`);
+    if (sourcesIndex.queryLocation){
+      const result = await fetch(`${config.queryFolder}${sourcesIndex.queryLocation}`);
       queryStringIndexSource = await result.text();
     }else{
-       queryStringIndexSource = query.sourcesIndex.queryString;
+       queryStringIndexSource = sourcesIndex.queryString;
     }
 
-    const queryForSourceRetrieval = query
-    queryForSourceRetrieval.comunicaContext.sources =  [query.sourcesIndex.url]
+    // const queryForSourceRetrieval = query
+    // console.log(queryForSourceRetrieval)
+    // queryForSourceRetrieval.comunicaContext.sources =  [query.sourcesIndex.url]
 
     const bindingsStream = await myEngine.queryBindings(queryStringIndexSource, {
-      ...generateContext(queryForSourceRetrieval.comunicaContext),
+      ...generateContext({sources: [sourcesIndex.url]}),
     });
 
     await new Promise((resolve, reject) => {
