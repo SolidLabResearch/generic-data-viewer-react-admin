@@ -22,8 +22,9 @@
     "start:badCors": "node scripts/start-bad-cors-server.mjs"
   },
   "dependencies": {
-    "@comunica/actor-http-proxy": "^2.8.1",
-    "@comunica/query-sparql": "^2.8.1",
+    "@comunica/actor-http-proxy": "^3.2.0",
+    "@comunica/query-sparql": "^3.2.0",
+    "@comunica/query-sparql-link-traversal-solid": "^0.4.1",
     "@inrupt/solid-client": "^1.30.0",
     "@inrupt/solid-client-authn-browser": "^1.17.1",
     "@inrupt/vocab-common-rdf": "^1.0.5",
