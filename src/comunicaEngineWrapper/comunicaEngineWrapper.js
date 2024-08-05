@@ -1,13 +1,13 @@
 import { QueryEngine } from "@comunica/query-sparql";
-import { QueryEngineFactory } from "@comunica/query-sparql-link-traversal-solid";
+import { QueryEngineFactory }  from "@comunica/query-sparql-link-traversal-solid";
+
+const engineDefault = new QueryEngine;
+const engineDatasources = await new QueryEngineFactory().create({ configPath: './config-datasources.json' });
 
 import {
   getDefaultSession,
   fetch as authFetch,
 } from "@inrupt/solid-client-authn-browser";
-
-const engineDefault = new QueryEngine;
-const engineDatasources = await new QueryEngineFactory().create({ configPath: './config-datasources.json' });
 
 /**
  * A class wrapping the Comunica engines we need, used for all but login actions.
