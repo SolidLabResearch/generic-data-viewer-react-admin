@@ -1,0 +1,15 @@
+@prefix acl: <http://www.w3.org/ns/auth/acl#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+<#public>
+    a acl:Authorization;
+    acl:agentClass foaf:Agent;
+    acl:accessTo <./index-example-texon-only-link-traversal>;
+    acl:mode acl:Read.
+
+<#owner>
+    a acl:Authorization;
+    acl:accessTo <./index-example-texon-only-link-traversal>;
+    acl:agent <http://localhost:8080/example/profile/card#me>;
+    acl:mode acl:Read, acl:Write, acl:Control.
+

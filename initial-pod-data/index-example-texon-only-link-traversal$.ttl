@@ -1,0 +1,3 @@
+@prefix ex: <http://example.com/> .
+
+<#index-example-link-traversal> ex:hasDataSource <http://localhost:8080/example/index-example-texon-only> .
