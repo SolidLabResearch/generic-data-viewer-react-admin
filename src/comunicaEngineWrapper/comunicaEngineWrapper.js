@@ -1,8 +1,9 @@
 import { QueryEngine } from "@comunica/query-sparql";
-import { QueryEngineFactory }  from "@comunica/query-sparql-link-traversal-solid";
+//import { QueryEngine as QueryEngine2 } from "@comunica/query-sparql-link-traversal-solid";
+import { QueryEngine as QueryEngine2 } from "@mvbtst/comunica-lt-test-conf";
 
 const engineDefault = new QueryEngine;
-const engineDatasources = await new QueryEngineFactory().create({ configPath: './config-datasources.json' });
+const engineDatasources = new QueryEngine2;
 
 import {
   getDefaultSession,

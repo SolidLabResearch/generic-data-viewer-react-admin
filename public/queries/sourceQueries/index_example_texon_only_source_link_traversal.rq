@@ -1,0 +1,3 @@
+SELECT DISTINCT ?source WHERE {
+  ?s <http://example.com/hasDataSource> ?source.
+}
