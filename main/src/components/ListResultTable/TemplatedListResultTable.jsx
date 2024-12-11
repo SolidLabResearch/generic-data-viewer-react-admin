@@ -102,6 +102,7 @@ const TemplatedListResultTable = (props) => {
           onSubmit={onSubmit}
           submitted={submitted}
           searchPar={searchPar}
+          resource={resource}
         />
       }
       {tableEnabled && <ListResultTable {...props} resource={resource} variables={submittedVariables} changeVariables={changeVariables} submitted={submitted} />}

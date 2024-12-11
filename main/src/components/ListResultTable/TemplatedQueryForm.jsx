@@ -1,6 +1,6 @@
 import {AutocompleteInput, required, SaveButton, SimpleForm, Toolbar, useResourceDefinition} from "react-admin";
 import DoneIcon from '@mui/icons-material/Done';
-import {Component, useEffect} from "react";
+import {Component, useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import CustomQueryEditButton from "../CustomQueryEditor/customQueryEditButton";
 
@@ -21,15 +21,32 @@ const TemplatedQueryForm = (props) => {
     onSubmit,
     submitted,
     searchPar,
+    resource,
   } = props;
 
   const resourceDef = useResourceDefinition();
+
+  const [selectedVariables, setSelectedVariables] = useState({});
 
   useEffect(() => {
     if (submitted) {
       onSubmit(searchPar);
     }
-  }, [submitted])
+  }, [submitted]);
+
+  useEffect(() => {
+    const storedSelection = localStorage.getItem(`selectedVariables_${resource}`);
+    if (storedSelection) {
+      setSelectedVariables(JSON.parse(storedSelection));
+    }
+  }, [resource]);
+
+  const handleVariableSelectionChange = (name, value) => {
+    const updatedValues = {...selectedVariables, [name]: value};
+    setSelectedVariables(updatedValues);
+
+    localStorage.setItem(`selectedVariables_${resource}`, JSON.stringify(updatedValues));
+  };
 
   return (
     <SimpleForm toolbar={<MyToolbar/>} onSubmit={onSubmit}>
@@ -48,6 +65,10 @@ const TemplatedQueryForm = (props) => {
               id: option,
               name: option
             }))}
+          value={selectedVariables[name]}
+          onChange={(value) => {
+            handleVariableSelectionChange(name, value)
+          }}
         />
       ))}
     </SimpleForm>
@@ -57,6 +78,7 @@ const TemplatedQueryForm = (props) => {
 TemplatedQueryForm.propTypes = {
   variableOptions: PropTypes.object,
   onSubmit: PropTypes.func,
+  resource: PropTypes.string.isRequired,
 };
 
 export default TemplatedQueryForm;
