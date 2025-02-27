@@ -1,5 +1,5 @@
 {
-  "title": "Doorzoek de OSLO vocabularia en applicatieprofielen",
+  "title": "Search the OSLO vocabularia and application profiles",
   "logoLocation": "images/IDLab-logo.png",
   "logoRedirectURL": "https://idlab.technology/",
   "mainAppColor": "lightgray",
@@ -14,7 +14,7 @@
   "queryGroups": [
     {
       "id": "generic",
-      "name": "Generieke queries",
+      "name": "Generic queries",
       "icon": "InfoIcon"
     },
     {
@@ -28,7 +28,7 @@
       "id": "100",
       "queryGroupId": "generic",
       "queryLocation": "get-all-used-classes.rq",
-      "name": "Overzicht van alle gebruikte klassen",
+      "name": "Get all used classes",
       "comunicaContext": {
         "sources": [
           "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
@@ -39,7 +39,7 @@
       "id": "101",
       "queryGroupId": "generic",
       "queryLocation": "get-all-used-predicates.rq",
-      "name": "Overzicht van alle gebruikte predicated",
+      "name": "Get all used predicates",
       "comunicaContext": {
         "sources": [
           "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
@@ -64,7 +64,7 @@
       "id": "103",
       "queryGroupId": "specific",
       "queryLocation": "all-aps-that-use-dcterms-title.rq",
-      "name": "Alle applicatieprofielen die <http://purl.org/dc/terms/title> gebruiken",
+      "name": "All applicatiion profiles that use <http://purl.org/dc/terms/title>",
       "comunicaContext": {
         "sources": [
           "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
@@ -75,7 +75,7 @@
       "id": "104",
       "queryGroupId": "specific",
       "queryLocation": "properties-used-by-ap-vrachtwagenparkeren.rq",
-      "name": "Properties gebruikt door ap-vrachtwagenparkeren",
+      "name": "Properties used by ap-vrachtwagenparkeren",
       "comunicaContext": {
         "sources": [
           "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
