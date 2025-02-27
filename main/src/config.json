@@ -31,18 +31,7 @@
       "name": "Overzicht van alle gebruikte klassen",
       "comunicaContext": {
         "sources": [
-          "https://work.de-meester.org/oslo-generated.ttl"
-        ]
-      }
-    },
-    {
-      "id": "99",
-      "queryGroupId": "generic",
-      "queryLocation": "get-all-used-classes2.rq",
-      "name": "Overzicht van alle gebruikte klassen -versie2",
-      "comunicaContext": {
-        "sources": [
-          "https://work.de-meester.org/oslo-generated.ttl"
+          "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
         ]
       }
     },
@@ -53,7 +42,7 @@
       "name": "Overzicht van alle gebruikte predicated",
       "comunicaContext": {
         "sources": [
-          "https://work.de-meester.org/oslo-generated.ttl"
+          "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
         ]
       }
     },
@@ -64,7 +53,7 @@
       "name": "Outgoing triples per (super)class",
       "comunicaContext": {
         "sources": [
-          "https://work.de-meester.org/oslo-generated.ttl"
+          "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
         ]
       },
       "indirectVariables": {
@@ -78,7 +67,7 @@
       "name": "Alle applicatieprofielen die <http://purl.org/dc/terms/title> gebruiken",
       "comunicaContext": {
         "sources": [
-          "https://work.de-meester.org/oslo-generated.ttl"
+          "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
         ]
       }
     },
@@ -86,10 +75,10 @@
       "id": "104",
       "queryGroupId": "specific",
       "queryLocation": "properties-used-by-ap-vrachtwagenparkeren.rq",
-      "name": "Properities gebruikt door ap-vrachtwagenparkeren",
+      "name": "Properties gebruikt door ap-vrachtwagenparkeren",
       "comunicaContext": {
         "sources": [
-          "https://work.de-meester.org/oslo-generated.ttl"
+          "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
         ]
       }
     }
