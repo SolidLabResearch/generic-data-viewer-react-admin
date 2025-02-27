@@ -36,6 +36,17 @@
       }
     },
     {
+      "id": "99",
+      "queryGroupId": "generic",
+      "queryLocation": "get-all-used-classes2.rq",
+      "name": "Overzicht van alle gebruikte klassen -versie2",
+      "comunicaContext": {
+        "sources": [
+          "https://work.de-meester.org/oslo-generated.ttl"
+        ]
+      }
+    },
+    {
       "id": "101",
       "queryGroupId": "generic",
       "queryLocation": "get-all-used-predicates.rq",
