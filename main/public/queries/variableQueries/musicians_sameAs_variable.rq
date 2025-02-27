@@ -1,7 +1,0 @@
-PREFIX schema: <http://schema.org/> 
-
-SELECT DISTINCT ?sameAsUrl
-WHERE { 
-  ?list schema:sameAs ?sameAsUrl
-}
-ORDER BY ?sameAsUrl

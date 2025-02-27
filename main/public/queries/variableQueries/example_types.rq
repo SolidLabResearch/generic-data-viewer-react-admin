@@ -1,5 +1,0 @@
-SELECT DISTINCT ?type  WHERE {
-  ?term a $type
-}
-ORDER BY ?type
-LIMIT 50

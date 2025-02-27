@@ -1,0 +1,13 @@
+PREFIX shacl: <http://www.w3.org/ns/shacl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?p WHERE {
+	?shape a shacl:NodeShape;
+	  shacl:property [
+	    shacl:path ?p
+	  ].
+
+	 ?ap rdfs:member ?shape.
+
+	 <https://data.vlaanderen.be/standaarden/> rdfs:member ?ap.
+}

@@ -1,6 +1,0 @@
-SELECT DISTINCT ?s ?p ?o WHERE {
-  ?s ?p ?o
-}
-ORDER BY ?s ?p ?o
-OFFSET 2
-LIMIT 36

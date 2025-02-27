@@ -1,6 +1,0 @@
-SELECT DISTINCT ?subject ?predicate ?object WHERE {
-  ?subject ?predicate ?object
-  FILTER(?predicate = $predicate)
-}
-ORDER BY ?subject ?object
-LIMIT 50

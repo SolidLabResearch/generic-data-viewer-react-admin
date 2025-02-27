@@ -1,0 +1,11 @@
+PREFIX shacl: <http://www.w3.org/ns/shacl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?property WHERE {
+	?shape a shacl:NodeShape;
+	  shacl:property [
+	    shacl:path ?property
+	  ].
+
+	 <https://data.vlaanderen.be/doc/applicatieprofiel/vrachtwagenparkeren> rdfs:member ?shape.
+}

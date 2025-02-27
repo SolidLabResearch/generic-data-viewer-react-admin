@@ -1,8 +1,0 @@
-PREFIX foaf: <http://xmlns.com/foaf/0.1/>
-PREFIX dbo: <http://dbpedia.org/ontology/>
-PREFIX dbp: <http://dbpedia.org/resource/>
-CONSTRUCT WHERE {
-  ?person a dbo:Artist.
-  ?person foaf:name ?name.
-  ?person dbo:influencedBy dbp:Pablo_Picasso.
-}

@@ -1,9 +1,0 @@
-PREFIX schema: <http://schema.org/>
-SELECT ?name ?image_img
-WHERE {
-  ?list schema:name ?listTitle;
-      schema:itemListElement [
-      schema:image ?image_img;
-      schema:name ?name
-    ].
-}

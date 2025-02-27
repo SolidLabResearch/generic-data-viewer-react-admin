@@ -1,6 +1,0 @@
-PREFIX schema: <http://schema.org/>
-
-SELECT (AVG(?value) AS ?average)
-WHERE {
-  ?v schema:value ?value;
-}

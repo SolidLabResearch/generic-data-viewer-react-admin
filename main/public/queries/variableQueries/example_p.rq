@@ -1,5 +1,0 @@
-SELECT DISTINCT ?predicate WHERE {
-  ?subject ?predicate ?object
-}
-ORDER BY ?predicate
-LIMIT 50

@@ -1,0 +1,10 @@
+SELECT ?pto ?oto
+WHERE {
+  {
+    $class ?pto ?oto .
+  } UNION {
+    $class <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?class .
+    ?pto <http://www.w3.org/2000/01/rdf-schema#domain> ?class .
+    ?pto ?p ?oto .
+  }
+}
