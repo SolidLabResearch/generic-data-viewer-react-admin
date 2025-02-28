@@ -1,0 +1,8 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?property ?p ?o
+
+WHERE {
+  $property ?p ?o .
+  BIND ($property AS ?property)
+}

@@ -11,24 +11,11 @@
   "defaultIDP": "",
   "footer": "<p><a href='https://idlab.technology/'>IDLab</a> - <a href='https://www.imec.be/nl'>imec</a> - <a href='https://www.ugent.be/'>UGent</a></p>",
   "introductionText": "Please select a query from the menu on the left.",
-  "queryGroups": [
-    {
-      "id": "generic",
-      "name": "Generic queries",
-      "icon": "InfoIcon"
-    },
-    {
-      "id": "specific",
-      "name": "Specific queries",
-      "icon": "ConstructionIcon"
-    }
-  ],
   "queries": [
     {
       "id": "100",
-      "queryGroupId": "generic",
       "queryLocation": "get-all-used-classes.rq",
-      "name": "Get all used classes",
+      "name": "All used classes",
       "comunicaContext": {
         "sources": [
           "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
@@ -37,9 +24,8 @@
     },
     {
       "id": "101",
-      "queryGroupId": "generic",
-      "queryLocation": "get-all-used-predicates.rq",
-      "name": "Get all used predicates",
+      "queryLocation": "get-all-used-properties.rq",
+      "name": "All used properties",
       "comunicaContext": {
         "sources": [
           "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
@@ -48,7 +34,6 @@
     },
     {
       "id": "102",
-      "queryGroupId": "generic",
       "queryLocation": "outgoing-triples-per-superclass.rq",
       "name": "Outgoing triples per (super)class",
       "comunicaContext": {
@@ -62,24 +47,41 @@
     },
     {
       "id": "103",
-      "queryGroupId": "specific",
-      "queryLocation": "all-aps-that-use-dcterms-title.rq",
-      "name": "All applicatiion profiles that use <http://purl.org/dc/terms/title>",
+      "queryLocation": "outgoing-triples-per-property.rq",
+      "name": "Outgoing triples per property",
       "comunicaContext": {
         "sources": [
           "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
         ]
+      },
+      "indirectVariables": {
+        "queryLocations": ["variableQueries/property.rq"]
       }
     },
     {
       "id": "104",
-      "queryGroupId": "specific",
-      "queryLocation": "properties-used-by-ap-vrachtwagenparkeren.rq",
-      "name": "Properties used by ap-vrachtwagenparkeren",
+      "queryLocation": "all-aps-that-use-a-specific-property.rq",
+      "name": "All application profiles that use a specific-property",
       "comunicaContext": {
         "sources": [
           "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
         ]
+      },
+      "indirectVariables": {
+        "queryLocations": ["variableQueries/property-in-ap.rq"]
+      }
+    },
+    {
+      "id": "105",
+      "queryLocation": "all properties-used-by-a-specific-ap.rq",
+      "name": "All properties used by a specific application profile",
+      "comunicaContext": {
+        "sources": [
+          "https://raw.githubusercontent.com/KNowledgeOnWebScale/data-vlaanderen-bundled-rdf/refs/heads/main/bundle.ttl"
+        ]
+      },
+      "indirectVariables": {
+        "queryLocations": ["variableQueries/ap.rq"]
       }
     }
   ]
