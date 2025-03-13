@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Collections of known configurations are gathered in subdirectories of main/configs (#175).
 - Templated queries: variables shown in title of result table (#163).
 - Templated queries: changing variables dialogue is preloaded with previous values (#167).
+- About dialog, reachable from the application bar (#171).
 
 ## [1.5.0] - 2025-01-02
 
